@@ -1,0 +1,19 @@
+n = int(input("enter number of pages: "))
+it = int(input("enter the number of iterations: "))
+links = []
+for i in range(n):
+    l = list(map(int, input(f"enter outgoing links from page{i+1}(space-sep): ").split()))
+    l = [x-1 for x in l]   
+    links.append(l)
+rank = [1/n] * n
+print("iteration results:")
+for k in range(it):
+    new = [0]*n
+    for j in range(n):
+        for i in links[j]:
+            new[i] += rank[j] / len(links[j])
+    rank = new
+    print(f"iteration{k+1}:{rank}")
+for i in range(n):
+    print(f"final rank page{i+1}:{rank[i]:.4f}")
+    
