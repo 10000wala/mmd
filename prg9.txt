@@ -1,0 +1,18 @@
+import networkx as nx
+
+# Create graph
+G = nx.DiGraph()
+G.add_edges_from([
+    ('A', 'B'),
+    ('A', 'C'),
+    ('B', 'D'),
+    ('C', 'D')
+])
+
+# Calculate SimRank similarity
+sim = nx.simrank_similarity(G)
+
+# Print similarity between nodes
+for u in sim:
+    for v in sim[u]:
+        print(f"SimRank({u},{v}) = {sim[u][v]:.2f}")
